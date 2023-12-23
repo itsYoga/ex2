@@ -1,23 +1,15 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 import Axios from 'axios';
-
+import {useEffect, useState} from'react';
 function App() {
-  const [catFact, setCatFact] = useState("");
-
-  useEffect(() => {
-    Axios.get("https://catfact.ninja/fact")
-      .then((response) => {
-        console.log(response.data);
-        setCatFact(response.data.fact);
-      })
-      .catch((error) => {
-        console.error("Error fetching cat fact:", error);
-      });
-  }, []); // The empty dependency array means this effect runs once on component mount
-
+  const [catFact, setCatFact] = useState("")
+  useEffect(()=>{Axios.get("https://catfact.ninja/fact").then((res)=>{console.log(res.data);setCatFact(res.data.fact);   }); }, []);
+  
   return (
-    <div className="App">{catFact}</div>
-  );
+    <div className="App">{catFact}</div> );
+  
 }
 
 export default App;
